@@ -3,16 +3,6 @@ import { React, useState } from 'react';
 import { AndroidOutlined, AuditOutlined, LoginOutlined, AppstoreOutlined, MailOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
-// function getItem(label, key, icon, children, type) {
-//   return {
-//     key,
-//     icon,
-//     children,
-//     label,
-//     type,
-//   };
-// }
-
 const items = [
   {
     label: 'Home',
