@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 import Products from './components/Products/Products'
-
-// import { GlobalProvider } from './context/GlobalState'
+import { ProductProvider } from './context/ProductState'
 
 function App() {
   return (
-    // <GlobalProvider>
+    <ProductProvider>
       <BrowserRouter>
         <div className='main-container'>
           <Header />
@@ -21,7 +20,7 @@ function App() {
           {/* <Footer/> */}
         </div>
       </BrowserRouter>
-    // </GlobalProvider>
+    </ProductProvider>
   )
 }
 
