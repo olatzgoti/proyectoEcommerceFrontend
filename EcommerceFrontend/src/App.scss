@@ -9,6 +9,12 @@
   position: fixed;
   top: 0;
   width: 80%;
+
+  &__options{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 .logo {

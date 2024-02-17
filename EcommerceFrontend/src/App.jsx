@@ -11,10 +11,10 @@ function App() {
       <BrowserRouter>
         <div className='main-container'>
           <Header />
-          <div className='main-container-options'>
+          <div className='main-container__options'>
             <Routes>
               <Route path='/' element={<Home/>}/>
-              <Route path='/products' element={<Products/>}/>
+              <Route path='/products' element={<Products />}/>
             </Routes>
           </div>
           {/* <Footer/> */}
