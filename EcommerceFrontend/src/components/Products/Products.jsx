@@ -1,59 +1,67 @@
-import { useContext, useEffect, useState } from 'react'
-import { ProductContext } from '../../context/ProductState'
-import { Spin, Card, Button, Modal, Alert } from 'antd'
-import { ProductOutlined } from '@ant-design/icons'
-import './Products.style.scss'
-import Product from './Product'
+import React, { useContext, useEffect, useState } from 'react';
+import { ProductContext } from '../../context/ProductState';
+import { Spin, Card, Button, Modal } from 'antd';
+import { ProductOutlined } from '@ant-design/icons';
+import './Products.style.scss';
 
 const Products = () => {
-  const { products, getProducts } = useContext(ProductContext)
+  const { products, getProducts } = useContext(ProductContext);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    getProducts()
-  }, [])
+    getProducts();
+  }, []);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+
+  // const handleOk = () => {
+  //   setIsModalOpen(false);
+  // };
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
   const showProduct = (product) => {
-    console.log(product);
-    // setIsModalVisible(true);
-    return (
-      <>
-        <Product />
-      </>
-    )
-  }
+    setSelectedProduct(product);
+    showModal();
+  };
 
-  if (!products) return <Spin />
+  if (!products) return <Spin />;
 
   return (
     <>
-      { products && products.map((product) => (
-        <div>
-          <section key={product.id} className='product-card' >
-              <Card style={{ width: 300 }} >
-                <p>{product.name}</p>
-                <p className='product-card__price'>{product.price}€</p>
-                <button onClick={() =>{ 
-                  showModal
-                  showProduct(product)
-                  return <Alert message='mensaje' type='success'/> }}><ProductOutlined /></button>
-              </Card>
+      {products.map((product) => (
+        <div key={product.id}>
+          <section className='product-card'>
+            <Card style={{ width: 300 }}>
+              <p>{product.name}</p>
+              <p className='product-card__price'>{product.price}€</p>
+              <Button onClick={() => showProduct(product)}><ProductOutlined /></Button>
+            </Card>
           </section>
         </div>
       ))}
 
+      {selectedProduct && (
+        <Modal
+          keyboard={true}
+          centered={true}
+          footer={null}
+          title={selectedProduct.name}
+          open={isModalOpen}
+          // onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <p>{selectedProduct.Category.name}</p>
+          <p>{selectedProduct.price}€</p>
+        </Modal>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
