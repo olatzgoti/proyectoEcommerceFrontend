@@ -1,0 +1,13 @@
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &__product-card {
+    margin: .625rem;
+  
+    &__price {
+      font-weight: 700;
+    }
+  }
+}

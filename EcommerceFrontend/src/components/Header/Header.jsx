@@ -2,6 +2,7 @@ import {  useNavigate } from 'react-router-dom'
 import { React, useState } from 'react';
 import { AndroidOutlined, AuditOutlined, LoginOutlined, AppstoreOutlined, MailOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import './Header.style.scss'
 
 const items = [
   {
@@ -57,7 +58,9 @@ const Header = () => {
     }
   }
 
-  return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+  return (
+    <Menu className='header' onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items}/>
+  )
 }
 
 export default Header

@@ -1,13 +1,21 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   text-align: center;
 }
 
 .main-container{
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  top: 0;
+  width: 80%;
+
+  &__options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 .logo {
