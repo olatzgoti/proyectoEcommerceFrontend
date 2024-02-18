@@ -19,8 +19,8 @@ function App() {
             </Routes>
           </div>
         </div>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </ProductProvider>
   )
 }

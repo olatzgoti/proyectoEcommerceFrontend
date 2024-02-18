@@ -3,10 +3,10 @@ import './Footer.style.scss'
 const Footer = () => {
   return (
     <div className='footer'>
-      <p>Conócenos</p>
-      <p>FAQ</p>
-      <p>Contacto</p>
-      <p>Aviso Legal</p>
+      <p className='footer__element'>Conócenos</p>
+      <p className='footer__element'>FAQ</p>
+      <p className='footer__element'>Contacto</p>
+      <p className='footer__element'>Aviso Legal</p>
     </div>
   )
 }

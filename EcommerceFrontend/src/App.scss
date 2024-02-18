@@ -1,14 +1,16 @@
 #root {
-  max-width: 1280px;
+  display: flex;
+  max-width: 80%;
+  min-width: 24.8125rem;
   margin: auto;
-  padding: 2rem;
   text-align: center;
 }
 
 .main-container{
-  position: fixed;
-  top: 0;
-  width: 80%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 98%;
 
   &__options{
     display: flex;
