@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 import Products from './components/Products/Products'
+import Footer from './components/Footer/Footer'
 import { ProductProvider } from './context/ProductState'
 
 function App() {
@@ -17,9 +18,9 @@ function App() {
               <Route path='/products' element={<Products />}/>
             </Routes>
           </div>
-          {/* <Footer/> */}
         </div>
       </BrowserRouter>
+      <Footer />
     </ProductProvider>
   )
 }

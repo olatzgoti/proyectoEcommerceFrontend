@@ -34,17 +34,19 @@ const Products = () => {
 
   return (
     <>
-      {products.map((product) => (
-        <div key={product.id}>
-          <section className='product-card'>
-            <Card style={{ width: 300 }}>
-              <p>{product.name}</p>
-              <p className='product-card__price'>{product.price}€</p>
-              <Button onClick={() => showProduct(product)}><ProductOutlined /></Button>
-            </Card>
-          </section>
-        </div>
-      ))}
+      <div className='products'>
+        {products.map((product) => (
+          <div key={product.id}>
+            <section className='products__product-card'>
+              <Card style={{ width: 300 }}>
+                <p>{product.name}</p>
+                <p className='products__product-card__price'>{product.price}€</p>
+                <Button onClick={() => showProduct(product)}><ProductOutlined /></Button>
+              </Card>
+            </section>
+          </div>
+        ))}
+      </div>
 
       {selectedProduct && (
         <Modal
