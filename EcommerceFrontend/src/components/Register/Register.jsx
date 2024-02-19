@@ -2,15 +2,23 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserDataContext } from '../../context/UserState';
 import { Button, Form, Input } from 'antd';
 
-const onFinish = (values) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo);
-};
-
 const Register = () => {
+  const { users, createUser } = useContext(UserDataContext)
+
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    createUser(values)
+  };
+  
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+  
+  
+  // useEffect(() => {
+  //   createUser()
+  // },[])
+
   return (
     <>
       <Form

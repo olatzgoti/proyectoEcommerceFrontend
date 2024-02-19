@@ -9,9 +9,9 @@ const initialState = {
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState)
 
-  const createUser = async () => {
+  const createUser = async (values) => {
     const API_URL = 'http://localhost:3000'
-    const res = await axios.post(`${API_URL}/users/create`)
+    const res = await axios.post(`${API_URL}/users/create`, values)
     dispatch({
       type: "CREATE_USER",
       payload: res.data.users,
