@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserDataContext } from '../../context/UserState';
-import { Button, Form, Input, Alert } from 'antd';
+import { Button, Form, Input, Alert, Space } from 'antd';
 import {  useNavigate } from 'react-router-dom'
 
 const Register = () => {
@@ -14,7 +14,7 @@ const Register = () => {
       setAlertMessage('Email ya utilizado, escoge otro')
     }
   }, [users])
-  
+
   let navigate = useNavigate()
 
   const onFinish = async (values) => {
@@ -41,18 +41,9 @@ const Register = () => {
   }
 
   const formData = [
-    <>
+    <Space className='space' align='center' direction='vertical' style={{'padding-top': '1.25rem'}}>
       <Form
       name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      style={{
-        maxWidth: 600,
-      }}
       initialValues={{
         remember: true,
       }}
@@ -104,11 +95,11 @@ const Register = () => {
         <Input.Password placeholder='Contraseña'/>
       </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16, }}>
+      <Form.Item >
         <Button type="primary" htmlType="submit">Registrar</Button>
       </Form.Item>
     </Form>
-  </>
+  </Space>
   ]
 
   const alert = <Alert message={alertMessage} type="info" showIcon closable onClose={handleAlert}/>
