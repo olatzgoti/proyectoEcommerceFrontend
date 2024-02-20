@@ -5,6 +5,12 @@ const users = (state, action) => {
         ...state,
         users: action.payload,
       }
+    
+    case "RESET_USERSTATE":
+      return {
+        ...state,
+        users: []
+      }
 
     default:
       return state

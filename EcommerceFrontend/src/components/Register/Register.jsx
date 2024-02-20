@@ -1,9 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserDataContext } from '../../context/UserState';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Alert } from 'antd';
 
 const Register = () => {
-  const { users, createUser } = useContext(UserDataContext)
+  const { users, createUser, resetUserState } = useContext(UserDataContext)
+  const [ showAlert, setShowAlert ] = useState(false)
+
+  useEffect(() => {
+    if (users === 'email already used') setShowAlert(true) 
+  }, [users])
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -13,13 +18,13 @@ const Register = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-  
-  
-  // useEffect(() => {
-  //   createUser()
-  // },[])
 
-  return (
+  const handleAlert = () => {
+    setShowAlert(false)
+    resetUserState()
+  }
+
+  const formData = [
     <>
       <Form
       name="basic"
@@ -88,8 +93,16 @@ const Register = () => {
       </Form.Item>
     </Form>
   </>
+  ]
+
+  const alert = <Alert message="Email ya utilizado, escoge otro" type="error" showIcon closable onClose={handleAlert}/>
+
+  return (
+    <>
+      { formData }
+      { showAlert && alert }
+    </>
   )
-  
 }
 
 export default Register
