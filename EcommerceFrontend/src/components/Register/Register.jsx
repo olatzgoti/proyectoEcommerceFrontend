@@ -5,14 +5,24 @@ import { Button, Form, Input, Alert } from 'antd';
 const Register = () => {
   const { users, createUser, resetUserState } = useContext(UserDataContext)
   const [ showAlert, setShowAlert ] = useState(false)
+  const [ alertMessage, setAlertMessage ] = useState('')
 
   useEffect(() => {
-    if (users === 'email already used') setShowAlert(true) 
+    if (users === 'email already used') {
+      setShowAlert(true)
+      setAlertMessage('Email ya utilizado, escoge otro')
+    }
   }, [users])
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
-    createUser(values)
+  const onFinish = async (values) => {
+    console.log('Success:', values)
+    try {
+      await createUser(values)
+      setShowAlert(true)
+      setAlertMessage('Usuario creado correctamente, te hemos enviado un email de confirmación')
+    } catch (error) {
+      console.log(error)
+    }
   };
   
   const onFinishFailed = (errorInfo) => {
@@ -95,7 +105,7 @@ const Register = () => {
   </>
   ]
 
-  const alert = <Alert message="Email ya utilizado, escoge otro" type="error" showIcon closable onClose={handleAlert}/>
+  const alert = <Alert message={alertMessage} type="info" showIcon closable onClose={handleAlert}/>
 
   return (
     <>

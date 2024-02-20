@@ -13,9 +13,10 @@ export const UserProvider = ({ children }) => {
     const API_URL = 'http://localhost:3000'
     try {
       const res = await axios.post(`${API_URL}/users/create`, values)
+      console.log('exito: ',res);
       dispatch({
         type: "CREATE_USER",
-        payload: res.data.users,
+        payload: res.data.users, status:res.status,
       })
     } catch (error) {
       dispatch({
