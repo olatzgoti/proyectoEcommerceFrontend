@@ -5,23 +5,19 @@ const users = (state, action)=> {
             return {
                 ...state,
                 user:action.payload,
-
             }
         case 'LOGIN':
             return {
                 ...state,
                 token: action.payload.token,
-
             }
         case 'LOGOUT':
             return {
                 user:null,
-                token:null,
-            
+                token:null,           
             }    
         default:
             return state
     }
 }
-
 export default users
