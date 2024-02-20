@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserDataContext } from '../../context/UserState';
 import { Button, Form, Input, Alert } from 'antd';
+import {  useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const { users, createUser, resetUserState } = useContext(UserDataContext)
@@ -13,6 +14,8 @@ const Register = () => {
       setAlertMessage('Email ya utilizado, escoge otro')
     }
   }, [users])
+  
+  let navigate = useNavigate()
 
   const onFinish = async (values) => {
     console.log('Success:', values)
@@ -20,6 +23,9 @@ const Register = () => {
       await createUser(values)
       setShowAlert(true)
       setAlertMessage('Usuario creado correctamente, te hemos enviado un email de confirmación')
+      setTimeout(() => {
+        navigate('/login')
+      }, 2000);
     } catch (error) {
       console.log(error)
     }
