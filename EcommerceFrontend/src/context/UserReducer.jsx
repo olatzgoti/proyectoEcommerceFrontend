@@ -1,23 +1,21 @@
-const users = (state, action)=> {
 
-    switch (action.type) {
-        case 'REGISTER':
-            return {
-                ...state,
-                user:action.payload,
-            }
-        case 'LOGIN':
-            return {
-                ...state,
-                token: action.payload.token,
-            }
-        case 'LOGOUT':
-            return {
-                user:null,
-                token:null,           
-            }    
-        default:
-            return state
-    }
+const users = (state, action) => {
+  switch (action.type) {
+    case "CREATE_USER":
+      return {
+        ...state,
+        users: action.payload,
+      }
+
+    case 'LOGIN':
+        return {
+            ...state,
+            token: action.payload.token,
+        }
+
+    default:
+      return state
+  }
 }
+  
 export default users
