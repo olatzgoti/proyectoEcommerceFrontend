@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState)
 
   const createUser = async (values) => {
-<<<<<<< HEAD
     const API_URL = 'http://localhost:3000'
     try {
       const res = await axios.post(`${API_URL}/users/create`, values)
@@ -28,15 +27,13 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  const resetUserState = () => {
+  const resetUserState = async() => {
     dispatch({ type: "RESET_USERSTATE" })
-=======
     const res = await axios.post(`${API_URL}/users/create`, values)
     dispatch({
       type: "CREATE_USER",
       payload: res.data.users,
     })
->>>>>>> olatz
   }
   	const login = async (user) => {
 		const res = await axios.post(`${API_URL}/users/login`, user)
@@ -49,13 +46,8 @@ export const UserProvider = ({ children }) => {
 		}
 	}
 
-
   return (
-<<<<<<< HEAD
-    <UserDataContext.Provider value={{ users: state.users, createUser, resetUserState }}>
-=======
-    <UserDataContext.Provider value={{ users: state.users, createUser, login }}>
->>>>>>> olatz
+    <UserDataContext.Provider value={{ users: state.users, createUser, resetUserState, login }}>
       {children}
     </UserDataContext.Provider>
   )
