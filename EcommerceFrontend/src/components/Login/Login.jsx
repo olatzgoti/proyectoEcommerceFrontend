@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { UserDataContext } from '../../context/UserState'
 import { Form, Input, Button } from 'antd'
 
@@ -9,22 +8,19 @@ const Login = () => {
     const navigate = useNavigate()
     const { login } = useContext(UserDataContext) 
 
-    useEffect(()=>{
+    useEffect(() => {
         setTimeout(()=>{
             const foundToken = JSON.parse(localStorage.getItem('token'))
-            if(foundToken){ navigate('/users/getUser') }}, 1500)},[login])      
-        }
+            if(foundToken)
+            { navigate('/users/getUser') }}, 1500)},
+            [login])      
 
-    const onFinish = (values) =>{ login(values) }       
+    const onFinish = (values) => { login(values) }       
+    const onFinishFailed = (error) => { console.log("Failed:", error)}
 
-    const onFinishFailed = (error)=>{ console.log("Failed:", error)
-
-    return
-    (
-
-        <>
-        <h1>Login</h1>
-        <Form onFinish={onFinish} initialValues={{ remember:true }} onFinishFailed={onFinishFailed} autocomplete="off">
+    return(
+    <>  
+        <Form onFinish={onFinish} initialValues={{ remember:true }} onFinishFailed={onFinishFailed}autocomplete="off">
             <Form.Item label="Email" name="email" rules={[{ required: true, message: 'Please, insert your email' }]}>
                 <Input/>
             </Form.Item>
@@ -38,8 +34,7 @@ const Login = () => {
                 </Button>
             </Form.Item>
         </Form>
-        </>
+    </>
     )
     }    
-    
 export default Login
