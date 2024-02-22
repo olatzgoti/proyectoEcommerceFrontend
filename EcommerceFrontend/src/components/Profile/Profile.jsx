@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Card } from 'antd'
+import './Profile.styles.scss'
 
 const Profile = () => {
   const [orders, setOrders] = useState([])
@@ -26,8 +28,8 @@ const Profile = () => {
   }, [])
   
   return(
-    <>
-      <div className='profile-container'>
+    <div>
+      <div className='user-container'>
         <p>Nombre: {user.name}</p>
         <p>Apellido: {user.last_name}</p>
         <p>Email: {user.email}</p>
@@ -35,17 +37,17 @@ const Profile = () => {
       <div className='orders-container'>
         {orders.length > 0 ? ( 
           orders.map((order) => (
-            <div key={order.id} className='orders-container__item'>
+            <Card style={{ width: 300 }} key={order.id}>
               <p>Número de pedido: {order.id}</p>
-              <p>Producto: {order.Products[0].name}</p>
-              <p>Precio: {order.Products[0].price}€</p>
-            </div>
+              <p className='orders-container__item'>{order.Products[0].name}</p>
+              <p className='orders-container__item'>{order.Products[0].price}€</p>
+            </Card>
           ))
         ):(
           <p>No hay pedidos realizados</p>
         )}
       </div>
-    </>
+    </div>
   )
 }
 
