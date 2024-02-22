@@ -11,7 +11,8 @@ const Cart = () => {
 localStorage.setItem("cart", JSON.stringify(cart));
 }, [cart]);
 
-    const cartItem = cart.map((cartItem, i) => {
+
+ const cartItem = cart.map((cartItem, i) => {
     return (
 
     <div key={i}>

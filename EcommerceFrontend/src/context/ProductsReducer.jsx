@@ -13,8 +13,8 @@ switch (action.type) {
 
     return {
     ...state,
-    cart:[action.payload, ...state.cart]
-    }
+    cart: [action.payload, ...state.cart],
+    };
     
     case "CLEAR_CART":
 
