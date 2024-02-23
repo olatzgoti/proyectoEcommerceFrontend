@@ -1,6 +1,6 @@
 import {  useNavigate } from 'react-router-dom'
 import { React, useState } from 'react';
-import { AndroidOutlined, AuditOutlined, LoginOutlined, AppstoreOutlined, MailOutlined,ShoppingCartOutlined } from '@ant-design/icons';
+import { AndroidOutlined, AuditOutlined, LoginOutlined, LogoutOutlined, AppstoreOutlined, MailOutlined,ShoppingCartOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import './Header.style.scss'
 
@@ -14,6 +14,12 @@ const items = [
     label: 'Login',
     key: 'login',
     icon: <LoginOutlined />,
+    // disabled: true,
+  },
+  {
+    label: 'Logout',
+    key: 'logout',
+    icon: <LogoutOutlined />,
     // disabled: true,
   },
   {
@@ -51,6 +57,9 @@ const Header = () => {
             break
           case 'login': 
             navigate('/login')
+            break
+          case 'logout':
+            navigate('/logout')
             break
           case 'registro': 
             navigate('/register')
