@@ -7,6 +7,8 @@ import Footer from './components/Footer/Footer'
 import { ProductProvider } from './context/ProductState'
 import { UserProvider } from './context/UserState'
 import Register from './components/Register/Register'
+import Login from './components/Login/Login'
+import Profile from './components/Profile/Profile'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
                 <Route path='/' element={<Home/>}/>
                 <Route path='/products' element={<Products />}/>
                 <Route path='/register' element={<Register />}/>
+                <Route path='/login' element={<Login />}/>
+                <Route path='/profile' element={<Profile />}/>
               </Routes>
             </div>
           </div>

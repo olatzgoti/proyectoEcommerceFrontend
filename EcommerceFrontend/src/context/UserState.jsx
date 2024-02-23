@@ -28,21 +28,19 @@ export const UserProvider = ({ children }) => {
   }
 
   const resetUserState = async() => {
-    dispatch({ type: "RESET_USERSTATE" })
-    const res = await axios.post(`${API_URL}/users/create`, values)
-    dispatch({
-      type: "CREATE_USER",
-      payload: res.data.users,
-    })
-  }
-  	const login = async (user) => {
+    dispatch({ type: "RESET_USERSTATE" })}
+    
+
+
+  const login = async (user) => {
 		const res = await axios.post(`${API_URL}/users/login`, user)
 		dispatch({
 			type: 'LOGIN',
 			payload: res.data,
 		})
 		if (res.data) {
-			localStorage.setItem('token', JSON.stringify(res.data.token))
+      console.log('res.data', res.data);
+			localStorage.setItem('token', JSON.stringify({token: res.data.token, user: res.data.user.email, userId: res.data.user.id}))
 		}
 	}
 
