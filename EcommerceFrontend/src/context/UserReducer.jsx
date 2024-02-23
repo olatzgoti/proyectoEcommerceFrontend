@@ -12,6 +12,14 @@ const users = (state, action) => {
         users: []
       }
 
+    case "LOGIN":
+      return{
+        
+        ...state,
+        user: action.payload.token,
+
+      }
+
     default:
       return state
   }

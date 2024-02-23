@@ -61,7 +61,7 @@ const Header = () => {
           case 'perfil': 
             navigate('/profile')
             break
-          case 'cart':
+          case 'carrito':
             navigate('/cart')
             break
     }

@@ -38,17 +38,18 @@ export const UserProvider = ({ children }) => {
 			type: 'LOGIN',
 			payload: res.data,
 		})
+
 		if (res.data) {
       console.log('res.data', res.data);
 			localStorage.setItem('token', JSON.stringify({token: res.data.token, user: res.data.user.email, userId: res.data.user.id}))
 		}
 	}
-
+//
   return (
     <UserDataContext.Provider value={{ users: state.users, createUser, resetUserState, login }}>
       {children}
     </UserDataContext.Provider>
   )
 }
-
+//
 export const UserDataContext = createContext(initialState);

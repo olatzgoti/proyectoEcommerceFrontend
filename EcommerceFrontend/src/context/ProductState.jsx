@@ -4,8 +4,12 @@ import axios from 'axios'
 
 const initialState = {
   products: [],
+<<<<<<< HEAD
+=======
+  cart :[], 
+  //
+>>>>>>> olatz
 }
-
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState)
 
@@ -17,9 +21,22 @@ export const ProductProvider = ({ children }) => {
       payload: res.data.products,
     })
   }
+  //
+  const addCart = async(product) => {
+    const res = await axios.get(`${API_URL}/orders/newOrder`)
+    dispatch({
+      type: "ADD_CART",
+    payload: product,
+  });
+  }
+
+  
+ 
+//
 
   return (
-    <ProductContext.Provider value={{ products: state.products, getProducts }}>
+    <ProductContext.Provider value={{ products: state.products, cart: state.cart, getProducts, addCart }}>
+
       {children}
     </ProductContext.Provider>
   )

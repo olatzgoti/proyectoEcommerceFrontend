@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../context/ProductState';
 import { Spin, Card, Button, Modal } from 'antd';
 import { ProductOutlined } from '@ant-design/icons';
+
 import './Products.style.scss';
 
 const Products = () => {
@@ -42,6 +43,7 @@ const Products = () => {
                   <p>{product.name}</p>
                   <p className='products__product-card__price'>{product.price}€</p>
                   <Button onClick={() => showProduct(product)}><ProductOutlined /></Button>
+                  <button onClick={() => addCart(product)}><ShoppingCartOutlined/></button>
                 </Card>
               </section>
             </div>

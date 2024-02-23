@@ -9,12 +9,14 @@ switch (action.type) {
     products: action.payload,
     };
 
+
     case "ADD_CART":
 
     return {
     ...state,
     cart:[action.payload, ...state.cart]
     }
+    
     
     case "CLEAR_CART":
 
