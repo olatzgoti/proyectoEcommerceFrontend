@@ -19,16 +19,19 @@ export const ProductProvider = ({ children }) => {
     })
   }
 
+
 const addCart = async(product) => {
   const res = await axios.get(`${API_URL}/`)//FALTA URL
   dispatch({
     type: "ADD_CART",
   payload: product,
 });
-};
+}
+
 
   return (
     <ProductContext.Provider value={{ products: state.products, cart: state.cart, getProducts, addCart }}>
+      
       {children}
     </ProductContext.Provider>
   )

@@ -14,6 +14,7 @@ const users = (state, action) => {
 
     case "LOGIN":
       return{
+        
         ...state,
         user: action.payload.token,
 

@@ -41,6 +41,7 @@ export const UserProvider = ({ children }) => {
 			type: 'LOGIN',
 			payload: res.data,
 		})
+    
 		if (res.data) {
 			localStorage.setItem('token', JSON.stringify(res.data.token))
 		}
