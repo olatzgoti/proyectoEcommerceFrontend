@@ -4,11 +4,8 @@ import axios from 'axios'
 
 const initialState = {
   products: [],
-<<<<<<< HEAD
-=======
   cart :[], 
   //
->>>>>>> olatz
 }
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState)
