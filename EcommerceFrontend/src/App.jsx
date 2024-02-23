@@ -9,6 +9,8 @@ import { UserProvider } from './context/UserState'
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 import Profile from './components/Profile/Profile'
+import Login from './components/Login/Login'
+import Cart from './components/Cart/Cart'
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
                 <Route path='/register' element={<Register />}/>
                 <Route path='/login' element={<Login />}/>
                 <Route path='/profile' element={<Profile />}/>
+                <Route path='/cart' element={<Cart/>}/>
               </Routes>
             </div>
           </div>
