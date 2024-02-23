@@ -5,8 +5,8 @@ import axios from 'axios'
 const initialState = {
   products: [],
   cart :[], 
+  //
 }
-
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState)
   const API_URL = 'http://localhost:3000'
@@ -19,19 +19,19 @@ export const ProductProvider = ({ children }) => {
     })
   }
 
-
+//
 const addCart = async(product) => {
-  const res = await axios.get(`${API_URL}/`)//FALTA URL
+  const res = await axios.get(`${API_URL}/orders/newOrder`)
   dispatch({
     type: "ADD_CART",
   payload: product,
 });
 }
-
+//
 
   return (
     <ProductContext.Provider value={{ products: state.products, cart: state.cart, getProducts, addCart }}>
-      
+
       {children}
     </ProductContext.Provider>
   )
