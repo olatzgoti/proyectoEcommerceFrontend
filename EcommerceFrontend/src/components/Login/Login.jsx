@@ -1,22 +1,38 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserDataContext } from '../../context/UserState'
-import { Form, Input, Button, Space } from 'antd'
+import { Form, Input, Button, Space, Alert } from 'antd'
 
 const Login = () => {
 
     const navigate = useNavigate()
     const { login } = useContext(UserDataContext) 
+    const [ showAlert, setShowAlert ] = useState(false)
+
+    const handleAlert = () => {
+      setShowAlert(false)
+    }
 
     useEffect(() => {
         setTimeout(()=>{
             const foundToken = JSON.parse(localStorage.getItem('token'))
             if(foundToken)
-            { navigate('/users/getUser') }}, 1500)},
+            { navigate('/profile') }}, 1000)},
             [login])      
 
-    const onFinish = (values) => { login(values) }       
+    const onFinish = async (values) => { 
+      const loginOk = await login(values)
+      console.log('loginok', loginOk.request.status);
+
+      if(loginOk.request.status === 200) {
+        setTimeout(() => navigate('/profile'), 1500)
+      } else {
+        setShowAlert(true)
+      }
+    }
+
     const onFinishFailed = (error) => { console.log("Failed:", error)}
+    const alert = <Alert message='Usuario o contraseña incorrectos' type="info" showIcon closable onClose={handleAlert} style={{maxWidth: '70%'}}/>
 
     return(
     <>  
@@ -39,6 +55,9 @@ const Login = () => {
             </Form.Item>
         </Form>
       </Space>
+      <div style={{display:'flex', justifyContent: 'center'}}>
+        {showAlert && alert}
+      </div>
     </>
     )
     }    

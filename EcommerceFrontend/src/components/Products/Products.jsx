@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../context/ProductState';
 import { Spin, Card, Button, Modal } from 'antd';
-import { ProductOutlined } from '@ant-design/icons';
+import { ProductOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 import './Products.style.scss';
 

@@ -10,6 +10,8 @@ import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 import Profile from './components/Profile/Profile'
 import Cart from './components/Cart/Cart'
+import Logout from './components/Logout/Logout'
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
                 <Route path='/products' element={<Products />}/>
                 <Route path='/register' element={<Register />}/>
                 <Route path='/login' element={<Login />}/>
+                <Route path='/logout' element={<Logout />}/>
                 <Route path='/profile' element={<Profile />}/>
                 <Route path='/cart' element={<Cart/>}/>
               </Routes>
