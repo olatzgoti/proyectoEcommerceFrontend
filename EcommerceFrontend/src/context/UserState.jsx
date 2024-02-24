@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState)
 
   const createUser = async (values) => {
-    const API_URL = 'http://localhost:3000'
     try {
       const res = await axios.post(`${API_URL}/users/create`, values)
       console.log('exito: ',res);
@@ -28,20 +27,21 @@ export const UserProvider = ({ children }) => {
   }
 
   const resetUserState = async() => {
-    dispatch({ type: "RESET_USERSTATE" })}
-    
+    dispatch({ type: "RESET_USERSTATE" })}  
 
 
   const login = async (user) => {
-		const res = await axios.post(`${API_URL}/users/login`, user)
-		dispatch({
-			type: 'LOGIN',
-			payload: res.data,
-		})
-		if (res.data) {
-      console.log('res.data', res.data);
-			localStorage.setItem('token', JSON.stringify({token: res.data.token, user: res.data.user.email, userId: res.data.user.id}))
-		}
+    try {
+      const res = await axios.post(`${API_URL}/users/login`, user)
+        localStorage.setItem('token', JSON.stringify({token: res.data.token, user: res.data.user.email, userId: res.data.user.id})),
+        dispatch({
+          type: 'LOGIN',
+          payload: res.data,
+        })
+      return res
+    } catch (error) {
+      return error
+    }
 	}
 
   return (

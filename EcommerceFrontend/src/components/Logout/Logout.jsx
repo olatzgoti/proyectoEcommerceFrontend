@@ -12,7 +12,7 @@ const Logout = () => {
       localStorage.removeItem('token')
       setTimeout(() => {
         navigate('/login')
-      }, 2000);
+      }, 1000);
     })
     .catch((error) => console.log(error))
 
