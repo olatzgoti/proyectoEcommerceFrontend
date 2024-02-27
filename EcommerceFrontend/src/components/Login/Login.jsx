@@ -16,6 +16,13 @@ const Login = () => {
     useEffect(() => {
         setTimeout(()=>{
             const foundToken = JSON.parse(localStorage.getItem('token'))
+            if(foundToken){
+   //         
+                setShowAlert(true)
+               setAlertMessage('Se ha efectuado el inicio de sesión correctamente')
+                navigate('/profile') }}, 1500)},
+                [login])      
+console.log('hola1')
             if(foundToken)
             { navigate('/profile') }}, 1000)},
             [login])      

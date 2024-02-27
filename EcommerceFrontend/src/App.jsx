@@ -12,11 +12,13 @@ import Profile from './components/Profile/Profile'
 import Cart from './components/Cart/Cart'
 import Logout from './components/Logout/Logout'
 
+import { OrdersProvider } from './context/OrdersState'
 
 function App() {
   return (
     <UserProvider>
       <ProductProvider>
+        <OrdersProvider>
         <BrowserRouter>
           <div className='main-container'>
             <Header />
@@ -34,6 +36,7 @@ function App() {
           </div>
           <Footer />
         </BrowserRouter>
+        </OrdersProvider>
       </ProductProvider>
     </UserProvider>
   )

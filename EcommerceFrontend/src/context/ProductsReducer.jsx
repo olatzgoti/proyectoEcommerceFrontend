@@ -9,26 +9,21 @@ switch (action.type) {
     products: action.payload,
     };
 
-
     case "ADD_CART":
-
     return {
     ...state,
     cart:[action.payload, ...state.cart]
     }
     
-    
     case "CLEAR_CART":
-
     return {
     ...state,
     cart: [],
     };
 
-
     default:
-return state;
-}
+    return state;
+    }
 };
 
 export default products;
