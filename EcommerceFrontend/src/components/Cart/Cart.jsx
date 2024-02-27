@@ -18,10 +18,40 @@ const Cart = () => {
     console.log(cart)
 
     useEffect(() => {
-localStorage.setItem("cart", JSON.stringify(cart));
-}, [cart]);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        }, [cart]);
 
-    const cartItem = cart.map((cartItem, i) => {
+
+const productIdOrder = cart.map((cartItem) => cartItem.id)
+
+const createNewOrder = async() => {
+    resOrder  = await createOrder(productIdOrder);
+    console.log(resOrder, 'res 1')
+    if(resOrder == true)
+    {   console.log('entra en el if')
+        Swal.fire({
+        title: "Good job!",
+            text: "Se ha realizado el pedido",
+        icon: "success"
+    });  
+    setTimeout(() => {
+    navigate('/profile')
+         }, 1500);     
+    }
+
+    else
+        { setAlertMessage('Ha habido un error en la petición')
+        setShowAlert(true)
+        }
+    }
+
+    //clearCart();
+//};
+
+let i = 0
+
+const cartItem = cart.map((cartItem) => {
+    i++
     return (
         
         <div key={i}>
