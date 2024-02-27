@@ -14,9 +14,9 @@ const Login = () => {
             const foundToken = JSON.parse(localStorage.getItem('token'))
             if(foundToken){
    //         
-                //setShowAlert(true)
-     //           setAlertMessage('Se ha efectuado el inicio de sesión correctamente')
-                navigate('/users/getUser') }}, 1500)},
+                setShowAlert(true)
+               setAlertMessage('Se ha efectuado el inicio de sesión correctamente')
+                navigate('/profile') }}, 1500)},
                 [login])      
 console.log('hola1')
 

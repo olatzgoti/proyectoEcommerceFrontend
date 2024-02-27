@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const initialState = {
   users: [],
+  //token : token || null
 }
 
 export const UserProvider = ({ children }) => {
@@ -26,7 +27,7 @@ export const UserProvider = ({ children }) => {
       })
     }
   }
-
+  
   const resetUserState = async() => {
     dispatch({ type: "RESET_USERSTATE" })
     const res = await axios.post(`${API_URL}/users/create`, values)
@@ -35,23 +36,28 @@ export const UserProvider = ({ children }) => {
       payload: res.data.users,
     })
   }
-  	const login = async (user) => {
-		const res = await axios.post(`${API_URL}/users/login`, user)
-		dispatch({
-			type: 'LOGIN',
-			payload: res.data,
-		})
+  const login = async (user) => {
+      try {
+        const res = await axios.post(`${API_URL}/users/login`, user)
+          localStorage.setItem('token', JSON.stringify({token: res.data.token, user: res.data.user.email, userId: res.data.user.id})),
+          dispatch({
+            type: 'LOGIN',
+            payload: res.data,
+          })
+        return res
+      } catch (error) {
+        console.log(error)
+        return error
+      }
+    }
 
-		if (res.data) {
-			localStorage.setItem('token', JSON.stringify(res.data.token))
-		}
-	}
-//
   return (
     <UserDataContext.Provider value={{ users: state.users, createUser, resetUserState, login }}>
       {children}
     </UserDataContext.Provider>
   )
 }
+
+
 //
 export const UserDataContext = createContext(initialState);

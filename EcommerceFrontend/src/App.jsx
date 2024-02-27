@@ -9,11 +9,13 @@ import { UserProvider } from './context/UserState'
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 import Cart from './components/Cart/Cart'
+import { OrdersProvider } from './context/OrdersState'
 
 function App() {
   return (
     <UserProvider>
       <ProductProvider>
+        <OrdersProvider>
         <BrowserRouter>
           <div className='main-container'>
             <Header />
@@ -29,6 +31,7 @@ function App() {
           </div>
           <Footer />
         </BrowserRouter>
+        </OrdersProvider>
       </ProductProvider>
     </UserProvider>
   )

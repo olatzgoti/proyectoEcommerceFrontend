@@ -6,22 +6,23 @@ import { ProductOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import './Products.style.scss';
 
 const Products = () => {
-  const { products, getProducts, addCart } = useContext(ProductContext);
+  const { products, getProducts, addCart, cart } = useContext(ProductContext);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [cartProduct, setCartProduct] = useState([]);
+  
   useEffect(() => {
     getProducts();
-  }, []);
-
-  const showModal = () => {
+   // localStorage.setItem("cart", JSON.stringify(cart));
+  }, []
+  );
+const showModal = () => {
     setIsModalOpen(true);
   };
-
   // const handleOk = () => {
   //   setIsModalOpen(false);
   // };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -30,6 +31,13 @@ const Products = () => {
     setSelectedProduct(product);
     showModal();
   };
+
+  const chooseProduct = (product)=>{
+  localStorage.setItem("cart", JSON.stringify([...cartProduct, product]));
+  setCartProduct([...cartProduct, product])
+  
+  }
+
 
   if (!products) return <Spin />;
 
@@ -44,7 +52,7 @@ const Products = () => {
                   <p className='products__product-card__price'>{product.price}€</p>
                   <Button onClick={() => showProduct(product)}><ProductOutlined /></Button>
   
-                  <button onClick={() => addCart(product)}><ShoppingCartOutlined/></button>
+                  <button onClick={() => chooseProduct(product)}><ShoppingCartOutlined/></button>
                
                 </Card>
               </section>
