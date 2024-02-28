@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react'
+import AppReducer from './AppReducer'
 import axios from 'axios'
 import ProductReducer from './ProductsReducer'
 
@@ -14,7 +15,7 @@ const initialState = {
 const API_URL = 'http://localhost:3000'
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState)
-  const API_URL = 'http://localhost:3000'
+ // const API_URL = 'http://localhost:3000'
 
   const getProducts = async () => {
     const res = await axios.get(`${API_URL}/Products/getAll`)
@@ -24,7 +25,7 @@ export const ProductProvider = ({ children }) => {
     })
     return res
   }
-  //
+
   const addCart = async(product) => {
     const res = await axios.get(`${API_URL}/orders/newOrder`)
     dispatch({
@@ -33,8 +34,16 @@ export const ProductProvider = ({ children }) => {
   });
   }
 
-  
- 
+const clearCart = async() =>{
+
+dispatch({
+
+  type: "CLEAR_CART",
+  payload: {...state, cart:[]},
+})
+
+}
+
 //
 
   return (
@@ -45,7 +54,7 @@ export const ProductProvider = ({ children }) => {
     getProducts, 
       clearCart,
       addCart,
-     }}>
+    }}>
 
       {children}
     </ProductContext.Provider>

@@ -3,7 +3,7 @@ import { ProductContext } from "../../context/ProductState"
 import { OrdersContext } from '../../context/OrdersState'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-
+import { Card } from 'antd'
 
 const Cart = () => {
     
@@ -14,33 +14,37 @@ const Cart = () => {
     //const {cartProduct, clearCart } useContext(Products)
     let resOrder = false
 
-    const cart = JSON.parse(localStorage.getItem("cart") || null);
-    console.log(cart)
+    const cart = JSON.parse(localStorage.getItem("cart"));
+   
 
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
         }, [cart]);
 
 
-const productIdOrder = cart.map((cartItem) => cartItem.id)
+ const productIdOrder = cart.map((cartItem) => cartItem.id) 
+    
+    const createNewOrder = async() => {
 
-const createNewOrder = async() => {
     resOrder  = await createOrder(productIdOrder);
     console.log(resOrder, 'res 1')
     if(resOrder == true)
     {   console.log('entra en el if')
+        
         Swal.fire({
-        title: "Good job!",
+            title: "Good job!",
             text: "Se ha realizado el pedido",
-        icon: "success"
+            icon: "success"
     });  
     setTimeout(() => {
     navigate('/profile')
-         }, 1500);     
+        }, 1500);     
     }
 
     else
-        { res.send('Error en la petición')
+        { 
+        setAlertMessage('Ha habido un error en la petición')
+        setShowAlert(true)
         }
     }
 
@@ -52,16 +56,22 @@ let i = 0
 const cartItem = cart.map((cartItem) => {
     i++
     return (
+        <div classname='orders-container'>
+
+        <Card style={{ width: 300}} key={i}>
+         <p>Número de pedido: {cartItem.id}</p>
+            <p classname='orders-container-item'>{cartItem.name}</p>
+            <p classname='orders-container-item'>{cartItem.price.toFixed(2)} €</p>
+        </Card>    
         
-        <div key={i}>
-            <span>{cartItem.name}</span>
-            <span>{cartItem.price.toFixed(2)} €</span>
         </div>
     )
 });
+
+
 return (
     <div>
-        {cart && cart.length>0 ? (cartItem) : (
+        {cart && cart.length > 0 ? (cartItem) : (
             <span>You dont have any products added</span>
             ) }
         <button onClick={() => clearCart()}>Clear cart</button>

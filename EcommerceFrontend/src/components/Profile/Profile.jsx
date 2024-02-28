@@ -19,6 +19,7 @@ const Profile = () => {
     }
 
     const foundUser = async () => {
+    //  const res = await axios.get(`${API_URL}/users/getUser/${foundToken.user}`, {headers: {'Authorization': foundToken.token} })
       const res = await axios.get(`${API_URL}/users/getUser/${foundToken.user}`, {headers: {'Authorization': foundToken.token} })
       setUser(res.data.users)
     }

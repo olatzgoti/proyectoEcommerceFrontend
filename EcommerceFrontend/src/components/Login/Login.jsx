@@ -8,6 +8,7 @@ const Login = () => {
     const navigate = useNavigate()
     const { login } = useContext(UserDataContext) 
     const [ showAlert, setShowAlert ] = useState(false)
+    const [ alertMessage, setAlertMessage ] = useState('')
 
     const handleAlert = () => {
       setShowAlert(false)
@@ -23,10 +24,7 @@ const Login = () => {
                 navigate('/profile') }}, 1500)},
                 [login])      
 console.log('hola1')
-            if(foundToken)
-            { navigate('/profile') }}, 1000)},
-            [login])      
-
+          
     const onFinish = async (values) => { 
       const loginOk = await login(values)
       console.log('loginok', loginOk.request.status);
@@ -34,7 +32,7 @@ console.log('hola1')
       if(loginOk.request.status === 200) {
         setTimeout(() => navigate('/profile'), 1500)
       } else {
-        setShowAlert(true)
+        setShowAlert(false)
       }
     }
 
