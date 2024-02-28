@@ -51,9 +51,7 @@ const showModal = () => {
                   <p>{product.name}</p>
                   <p className='products__product-card__price'>{product.price}€</p>
                   <Button onClick={() => showProduct(product)}><ProductOutlined /></Button>
-  
-                  <Button onClick={() => addCart(product)}><ShoppingCartOutlined/></button>
-               
+                  <Button onClick={() => chooseProduct(product)}><ShoppingCartOutlined/></Button>
                 </Card>
               </section>
             </div>

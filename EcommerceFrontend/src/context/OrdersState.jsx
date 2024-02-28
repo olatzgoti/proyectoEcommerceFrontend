@@ -11,15 +11,17 @@ export const OrdersProvider = ({ children }) => {
     const token = JSON.parse(localStorage.getItem("token"));
     try {
         console.log(order)
+        
         await axios.post(`${API_URL}/orders/neworder`,
-         { ProductId: Number(order), 
-            UserId: Number(token.userId) },
-        {
-            headers: { authorization: token.token, },
-        },
-      
-         );
-         return true
+            { 
+                ProductId: Number(order), 
+                UserId: Number(token.userId) },
+            {
+                headers: { authorization: token.token, },
+            },
+
+        );
+        return true
     }
 
     catch (error) {
