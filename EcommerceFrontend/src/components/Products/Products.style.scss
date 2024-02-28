@@ -1,0 +1,17 @@
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap:wrap;
+  overflow-y: auto;
+  height:max-content;
+  padding-bottom: 3.75rem;
+
+  &__product-card {
+    margin: .625rem;
+  
+    &__price {
+      font-weight: 700;
+    }
+  }
+}
+
