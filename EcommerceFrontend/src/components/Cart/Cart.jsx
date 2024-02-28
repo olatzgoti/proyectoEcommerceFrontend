@@ -40,8 +40,7 @@ const createNewOrder = async() => {
     }
 
     else
-        { setAlertMessage('Ha habido un error en la petición')
-        setShowAlert(true)
+        { res.send('Error en la petición')
         }
     }
 
